@@ -20,7 +20,7 @@ fn main() {
     }
 }
 
-fn start() -> Result<(), ()> {
+pub fn start() -> Result<(), ()> {
     use compilation_user::CompilerConfig;
     use execution_user::ExecutionConfig;
     let user_input = Input::new()?;
