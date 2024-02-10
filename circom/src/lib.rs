@@ -6,19 +6,8 @@ mod type_analysis_user;
 
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
-
 use ansi_term::Colour;
 use input_user::Input;
-fn main() {
-    let result = start();
-    if result.is_err() {
-        eprintln!("{}", Colour::Red.paint("previous errors were found"));
-        std::process::exit(1);
-    } else {
-        println!("{}", Colour::Green.paint("Everything went okay"));
-        //std::process::exit(0);
-    }
-}
 
 pub fn start() -> Result<(), ()> {
     use compilation_user::CompilerConfig;
@@ -43,7 +32,7 @@ pub fn start() -> Result<(), ()> {
         r1cs: user_input.r1cs_file().to_string(),
         json_constraints: user_input.json_constraints_file().to_string(),
         json_substitutions: user_input.json_substitutions_file().to_string(),
-        prime: user_input.prime(),        
+        prime: user_input.prime(),
     };
     let circuit = execution_user::execute_project(program_archive, config)?;
     let compilation_config = CompilerConfig {
@@ -52,10 +41,10 @@ pub fn start() -> Result<(), ()> {
         c_flag: user_input.c_flag(),
         wasm_flag: user_input.wasm_flag(),
         wat_flag: user_input.wat_flag(),
-	    js_folder: user_input.js_folder().to_string(),
-	    wasm_name: user_input.wasm_name().to_string(),
-	    c_folder: user_input.c_folder().to_string(),
-	    c_run_name: user_input.c_run_name().to_string(),
+        js_folder: user_input.js_folder().to_string(),
+        wasm_name: user_input.wasm_name().to_string(),
+        c_folder: user_input.c_folder().to_string(),
+        c_run_name: user_input.c_run_name().to_string(),
         c_file: user_input.c_file().to_string(),
         dat_file: user_input.dat_file().to_string(),
         wat_file: user_input.wat_file().to_string(),
